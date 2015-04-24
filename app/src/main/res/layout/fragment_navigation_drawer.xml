@@ -2,12 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEE"
+    android:background="#FBBC00"
     tools:context="com.lm.android.study.materialdesignstudy.NavigationDrawerFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_width="280dp"
+        android:layout_height="140dp"
+        android:src="@drawable/img" />
 
 </FrameLayout>
