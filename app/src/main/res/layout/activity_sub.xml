@@ -14,4 +14,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <com.lm.android.study.materialdesignstudy.MyLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.lm.android.study.materialdesignstudy.MyView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:text="My Custom View" />
+    </com.lm.android.study.materialdesignstudy.MyLayout>
+
 </LinearLayout>

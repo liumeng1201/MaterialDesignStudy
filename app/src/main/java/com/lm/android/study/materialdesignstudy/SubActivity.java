@@ -4,11 +4,14 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 
 
 public class SubActivity extends ActionBarActivity {
+    public static final String TAG = "TouchEvent";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,47 @@ public class SubActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d(TAG, "SubActivity dispatchTouchEvent " + "DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.d(TAG, "SubActivity dispatchTouchEvent " + "MOVE");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.d(TAG, "SubActivity dispatchTouchEvent " + "UP");
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d(TAG, "SubActivity dispatchTouchEvent " + "CANCEL");
+                break;
+        }
+        boolean b = super.dispatchTouchEvent(ev);
+        Log.d(TAG, "SubActivity dispatchTouchEvent Return " + b);
+        return b;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d(TAG, "SubActivity onTouchEvent " + "DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.d(TAG, "SubActivity onTouchEvent " + "MOVE");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.d(TAG, "SubActivity onTouchEvent " + "UP");
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d(TAG, "SubActivity onTouchEvent " + "CANCEL");
+                break;
+        }
+        boolean b = super.onTouchEvent(event);
+        Log.d(TAG, "SubActivity onTouchEvent Return " + b);
+        return b;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
