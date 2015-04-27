@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class NavigationDrawerFragment extends Fragment {
@@ -20,17 +25,46 @@ public class NavigationDrawerFragment extends Fragment {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private View containerView;
+    private RecyclerView recyclerView;
+
+    private CustomAdapter adatper;
 
     private boolean mUserLearnedDrawer;
-    private boolean mFromSavedinstanceState;
+    private boolean mFromSavedInstanceState;
 
     public NavigationDrawerFragment() {
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mUserLearnedDrawer = Boolean.valueOf(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "false"));
+        if (savedInstanceState != null) {
+            mFromSavedInstanceState = true;
+        }
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
+        adatper = new CustomAdapter(getActivity(), getData());
+        recyclerView.setAdapter(adatper);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return layout;
+    }
+
+    private List<Information> getData() {
+        List<Information> datas = new ArrayList<>();
+        int[] icons = {R.drawable.icon, R.drawable.icon, R.drawable.icon, R.drawable.icon};
+        String[] titles = {"Title 1", "Title 2", "Title 3", "Title 4"};
+        for (int i = 0; i < icons.length; i++) {
+            Information item = new Information();
+            item.title = titles[i];
+            item.iconId = icons[i];
+            datas.add(item);
+        }
+        return datas;
     }
 
 
